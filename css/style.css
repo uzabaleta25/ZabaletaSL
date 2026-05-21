@@ -1,0 +1,763 @@
+/* ============================================================
+   style.css — Ignacio Zabaleta SL
+   ============================================================ */
+
+/* ── ALDAGAIAK ── */
+:root {
+  --color-primary:  #1a1a1a;
+  --color-accent:   #cc2222;
+  --color-accent2:  #e03333;
+  --color-light:    #f5f5f5;
+  --color-mid:      #e0e0e0;
+  --color-text:     #222222;
+  --color-muted:    #666666;
+  --font-display:   'Oswald', sans-serif;
+  --font-body:      'Source Sans 3', sans-serif;
+  --transition:     0.3s ease;
+}
+
+/* ── OINARRIA ── */
+* { box-sizing: border-box; }
+body {
+  font-family: var(--font-body);
+  color: var(--color-text);
+  background: #fff;
+  overflow-x: hidden;
+}
+
+/* ── NAVBAR ── */
+.navbar {
+  background: var(--color-primary);
+  padding: 1rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border-bottom: 3px solid var(--color-accent);
+}
+.navbar-brand {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #fff !important;
+  letter-spacing: 0.05em;
+}
+.navbar-brand span { color: var(--color-accent); }
+.nav-link {
+  font-family: var(--font-display);
+  color: #ffffff !important;
+  letter-spacing: 0.08em;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  transition: color var(--transition);
+  padding: 0.5rem 1rem !important;
+}
+.nav-link:hover,
+.nav-link.active { color: var(--color-accent) !important; }
+.navbar-toggler { border-color: var(--color-accent); }
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%23cc2222' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+/* ── HERO ── */
+.hero {
+  min-height: 92vh;
+  background: var(--color-primary);
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    45deg,
+    transparent, transparent 40px,
+    rgba(200,134,10,0.04) 40px,
+    rgba(200,134,10,0.04) 41px
+  );
+}
+.hero-accent-bar {
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 6px;
+  background: linear-gradient(to bottom, var(--color-accent), var(--color-accent2));
+}
+.hero-content { position: relative; z-index: 1; }
+.hero-tag {
+  display: inline-block;
+  background: var(--color-accent);
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 0.35rem 1rem;
+  margin-bottom: 1.5rem;
+}
+.hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2.8rem, 7vw, 5.5rem);
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  margin-bottom: 1.5rem;
+}
+.hero h1 em {
+  font-style: normal;
+  color: var(--color-accent);
+}
+.hero p {
+  font-size: 1.15rem;
+  color: #aaa;
+  max-width: 480px;
+  line-height: 1.7;
+  margin-bottom: 2.5rem;
+}
+.hero-stats {
+  display: flex;
+  gap: 2.5rem;
+  margin-top: 3.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+.hero-stat-num {
+  font-family: var(--font-display);
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--color-accent);
+  line-height: 1;
+}
+.hero-stat-label {
+  font-size: 0.8rem;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-top: 0.3rem;
+}
+
+    /* ── KARRUSELA ── */
+    /*#heroCarousel {
+      height: calc(100vh - 70px);
+      min-height: 500px;
+    }*/
+
+#heroCarousel {
+  width: 100%;
+  background: #1a1a1a; /* beltza, kargatu bitartean */
+}
+
+    #heroCarousel .carousel-inner,
+    #heroCarousel .carousel-item {
+      height: 100%;
+    }
+
+    /* Irudia pantaila osoan */
+    .hero-slide-img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+    }
+
+    /* Placeholder irudirik ez dagoenean */
+    .hero-slide-placeholder {
+      width: 100%;
+      height: 100%;
+      background: #333;
+    }
+
+    /* Iluntze gradientea behean testua irakurgarri egiteko */
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(0,0,0,0.6) 0%,
+        rgba(0,0,0,0.1) 50%,
+        transparent 100%
+      );
+    }
+
+    /* Testua behean erdian */
+    .carousel-caption {
+      bottom: 50px;
+      left: 0;
+      right: 0;
+      text-align: center;
+    }
+    .carousel-caption h2 {
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: clamp(1.6rem, 3.5vw, 2.5rem);
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 0.4rem;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+    }
+    .carousel-caption p {
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: 1rem;
+      color: rgba(255,255,255,0.85);
+      margin: 0;
+      text-shadow: 0 1px 4px rgba(0,0,0,0.4);
+    }
+
+    /* Geziak diskretuak */
+    .carousel-control-prev,
+    .carousel-control-next {
+      width: 5%;
+      opacity: 0.6;
+    }
+    .carousel-control-prev:hover,
+    .carousel-control-next:hover { opacity: 1; }
+
+    /* Adierazle puntuak */
+    .carousel-indicators [data-bs-target] {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      border: none;
+      background-color: rgba(255,255,255,0.5);
+    }
+    .carousel-indicators .active {
+      background-color: #ffffff;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 767px) {
+      #heroCarousel { height: calc(100svh - 70px); }
+      .carousel-caption { bottom: 30px; }
+    }
+
+
+/* ── BOTOIAK ── */
+.btn-primary-custom {
+  background: var(--color-accent);
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.85rem 2.2rem;
+  border: none;
+  border-radius: 0;
+  transition: background var(--transition), transform var(--transition);
+  text-decoration: none;
+  display: inline-block;
+}
+.btn-primary-custom:hover {
+  background: var(--color-accent2);
+  color: #fff;
+  transform: translateY(-2px);
+}
+.btn-outline-custom {
+  background: transparent;
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.85rem 2.2rem;
+  border: 2px solid rgba(255,255,255,0.25);
+  border-radius: 0;
+  transition: border-color var(--transition), color var(--transition);
+  text-decoration: none;
+  display: inline-block;
+}
+.btn-outline-custom:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+/* ── SEKZIOAK (OROKORRAK) ── */
+section { padding: 5rem 0; }
+.section-tag {
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: 0.75rem;
+}
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 700;
+  color: var(--color-primary);
+  line-height: 1.1;
+  margin-bottom: 1rem;
+}
+.section-title span { color: var(--color-accent); }
+.section-subtitle {
+  color: var(--color-muted);
+  font-size: 1.05rem;
+  line-height: 1.7;
+  max-width: 520px;
+}
+.divider-accent {
+  width: 50px;
+  height: 4px;
+  background: var(--color-accent);
+  margin: 1.25rem 0 2rem;
+}
+
+/* ── ZERBITZUAK ── */
+.services { background: var(--color-light); }
+.service-card {
+  background: #fff;
+  padding: 2.2rem;
+  border-bottom: 4px solid transparent;
+  transition: border-color var(--transition), transform var(--transition), box-shadow var(--transition);
+  height: 100%;
+}
+.service-card:hover {
+  border-bottom-color: var(--color-accent);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+}
+.service-icon {
+  width: 52px;
+  height: 52px;
+  background: var(--color-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  font-size: 1.4rem;
+  color: #fff;
+}
+.service-card h4 {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+.service-card p {
+  color: var(--color-muted);
+  font-size: 0.95rem;
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* ── EGINDAKO LANAK ── */
+.portfolio-item {
+  position: relative;
+  overflow: hidden;
+  background: var(--color-light);
+  aspect-ratio: 4/3;
+}
+.portfolio-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-muted);
+  gap: 0.5rem;
+  font-size: 0.85rem;
+}
+.portfolio-placeholder i { font-size: 2rem; opacity: 0.4; }
+.portfolio-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(26,26,26,0.85);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity var(--transition);
+  padding: 1.5rem;
+  text-align: center;
+}
+.portfolio-item:hover .portfolio-overlay { opacity: 1; }
+.portfolio-overlay h5 {
+  font-family: var(--font-display);
+  color: #fff;
+  font-size: 1.15rem;
+  margin-bottom: 0.5rem;
+}
+.portfolio-overlay p {
+  color: var(--color-accent);
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+/* ── PROIEKTU TXARTELAK ── */
+    .proiektu-karta {
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      display: block;
+      text-decoration: none;
+    }
+    .proiektu-karta img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+    .proiektu-karta:hover img {
+      transform: scale(1.05);
+    }
+    .proiektu-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.55);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .proiektu-karta:hover .proiektu-overlay {
+      opacity: 1;
+    }
+    .proiektu-overlay h4 {
+      font-family: var(--font-display);
+      color: #fff;
+      font-size: 1.4rem;
+      margin-bottom: 0.5rem;
+      text-align: center;
+    }
+    .proiektu-overlay span {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.75);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+    .proiektu-izena {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--color-primary);
+      padding: 0.75rem 0 0.25rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .proiektu-mota {
+      font-size: 0.82rem;
+      color: var(--color-muted);
+    }
+
+/* ── NOR GARA ── */
+.about { background: #ffffff; color: #111; }
+.about .section-title { color: var(--color-primary); }
+.about .section-subtitle { color: var(--color-muted); }
+.about-feature {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+.about-feature-icon {
+  width: 40px;
+  height: 40px;
+  background: var(--color-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 1rem;
+  color: #fff;
+}
+.about-feature h6 {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  color: var(--color-primary);
+  margin-bottom: 0.25rem;
+}
+.about-feature p { color: var(--color-muted); font-size: 0.9rem; margin: 0; }
+.about-img-placeholder {
+  background: var(--color-light);
+  border: 1px solid var(--color-mid);
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-muted);
+  gap: 0.75rem;
+  font-size: 0.9rem;
+}
+.about-img-placeholder i { font-size: 3rem; }
+
+/* ── IRITZIAK ── */
+.testimonials { background: var(--color-light); }
+.testimonial-card {
+  background: #fff;
+  padding: 2rem;
+  height: 100%;
+  position: relative;
+}
+.testimonial-card::before {
+  content: '"';
+  font-family: var(--font-display);
+  font-size: 5rem;
+  color: var(--color-accent);
+  line-height: 1;
+  position: absolute;
+  top: 0.5rem;
+  left: 1.5rem;
+  opacity: 0.3;
+}
+.testimonial-text {
+  color: var(--color-text);
+  font-size: 0.95rem;
+  line-height: 1.75;
+  margin-bottom: 1.5rem;
+  padding-top: 1.5rem;
+}
+.testimonial-author {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1rem;
+}
+.testimonial-location {
+  font-size: 0.8rem;
+  color: var(--color-muted);
+}
+.stars { color: var(--color-accent); font-size: 0.85rem; margin-bottom: 0.5rem; }
+
+/* ── KONTAKTUA ── */
+.contact-info-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+.contact-icon {
+  width: 44px;
+  height: 44px;
+  background: var(--color-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 1.1rem;
+  color: #fff;
+}
+.contact-info-item h6 {
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-muted);
+  margin-bottom: 0.2rem;
+}
+.contact-info-item p { margin: 0; font-weight: 600; }
+.form-control,
+.form-select {
+  border: 1px solid var(--color-light);
+  border-radius: 0;
+  padding: 0.75rem 1rem;
+  font-family: var(--font-body);
+  transition: border-color var(--transition);
+}
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(200,134,10,0.1);
+}
+.form-label {
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-muted);
+  margin-bottom: 0.4rem;
+}
+.whatsapp-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: #25D366;
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 0;
+  text-decoration: none;
+  transition: background var(--transition);
+}
+.whatsapp-btn:hover { background: #1ebe5d; color: #fff; }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--color-primary);
+  color: #aaa;
+  padding: 3rem 0 1.5rem;
+  border-top: 3px solid var(--color-accent);
+}
+footer .brand {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 0.5rem;
+}
+footer .brand span { color: var(--color-accent); }
+footer a { color: #888; text-decoration: none; transition: color var(--transition); }
+footer a:hover { color: var(--color-accent); }
+.footer-links { list-style: none; padding: 0; }
+.footer-links li { margin-bottom: 0.5rem; font-size: 0.9rem; }
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.08);
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  font-size: 0.82rem;
+  color: #555;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 767px) {
+  .hero { min-height: 100svh; padding: 5rem 0 3rem; }
+  .hero-stats { gap: 1.5rem; flex-wrap: wrap; }
+  .hero-stat-num { font-size: 1.8rem; }
+  section { padding: 3.5rem 0; }
+}
+
+
+.navbar-brand img {
+    max-height: 60px; /* Altuera maximoa kontrolatzeko */
+    padding: 0;       /* Irudiak izan ditzakeen tarteak kentzeko */
+    margin-top: -5px; /* Beharrezkoa bada, pixka bat igotzeko eta zentratzeko */
+    margin-bottom: -5px;
+    margin-left: -70px;
+}
+
+/* Nabigazio barraren altuera orokorra ez dadin gehiegi handitu */
+.navbar {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    min-height: 100px; /* Hau zure gustura doitu */
+}
+
+.navbar-brand img {
+    height: 50px; 
+    transform: scale(5); /* Honek irudia handitzen du bere lekuan */
+    transform-origin: left center;
+}
+
+
+    /* ── MAPA ── */
+    .mapa-wrapper {
+      width: 100%;
+      height: 300px;
+      border: 2px solid var(--color-mid);
+      margin-top: 1.5rem;
+    }
+    .mapa-wrapper iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+
+/* ── GALERIA ETA LIGHTBOX OROKORRA (Proiektu guztietarako) ── */
+
+.galeria-img {
+  width: 100%;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+  display: block;
+  cursor: pointer;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+.galeria-img:hover {
+  transform: scale(1.02);
+  opacity: 0.9;
+}
+.galeria-item {
+  overflow: hidden;
+}
+
+/* ── LIGHTBOX ── */
+.lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.92);
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+.lightbox.aktibo {
+  display: flex;
+}
+.lightbox img {
+  max-width: 90vw;
+  max-height: 88vh;
+  object-fit: contain;
+  border: 2px solid rgba(255,255,255,0.1);
+}
+.lightbox-itxi {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.5rem;
+  font-size: 2rem;
+  color: #fff;
+  cursor: pointer;
+  background: none;
+  border: none;
+  line-height: 1;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+.lightbox-itxi:hover { opacity: 1; }
+.lightbox-aurrekoa,
+.lightbox-hurrengoa {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2rem;
+  color: #fff;
+  cursor: pointer;
+  background: rgba(255,255,255,0.1);
+  border: none;
+  padding: 0.5rem 0.85rem;
+  opacity: 0.7;
+  transition: opacity 0.2s, background 0.2s;
+}
+.lightbox-aurrekoa:hover,
+.lightbox-hurrengoa:hover { opacity: 1; background: rgba(255,255,255,0.2); }
+.lightbox-aurrekoa { left: 1rem; }
+.lightbox-hurrengoa { right: 1rem; }
+.lightbox-zenbakia {
+  position: absolute;
+  bottom: 1.25rem;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(255,255,255,0.5);
+  font-size: 0.85rem;
+}
+
+/* ── ITZULI BOTOIA ── */
+.btn-itzuli {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--color-muted);
+  font-size: 0.9rem;
+  text-decoration: none;
+  margin-bottom: 2rem;
+  transition: color 0.2s;
+}
+.btn-itzuli:hover { color: var(--color-accent); }
+
+ .hizkuntza-botoiak { display:flex; align-items:center; gap:0.25rem; margin-left:1rem; }
+    .hizkuntza-botoiak a { font-family:var(--font-display); font-size:0.78rem; font-weight:600; letter-spacing:0.08em; color:#aaa; text-decoration:none; padding:0.25rem 0.5rem; border:1px solid transparent; transition:all 0.2s ease; }
+    .hizkuntza-botoiak a:hover { color:#fff; }
+    .hizkuntza-botoiak a.aktibo { color:#fff; border-color:var(--color-accent); }
+    .hizkuntza-botoiak span { color:rgba(255,255,255,0.2); font-size:0.7rem; }
+    .mapa-wrapper { width:100%; height:300px; border:2px solid var(--color-mid); margin-top:1.5rem; }
+    .mapa-wrapper iframe { width:100%; height:100%; border:none; display:block; }
